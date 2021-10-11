@@ -1,0 +1,16 @@
+{% load static %}
+<html>
+    <head>
+        <title>Twitter機能</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/twitter.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1>Twitter機能</h1>
+        </div>
+          {% block content %}
+          {% endblock %}
+    </body>
+  </html>

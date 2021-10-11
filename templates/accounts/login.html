@@ -1,0 +1,31 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+          <h2>ログイン</h2><br>
+
+          {% if form.errors %}
+          <p>ユーザーID、パスワードが一致しません。</p>
+          {% endif %}
+          <form action="" method="POST">
+            {% csrf_token %}
+            <label>ユーザーID</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+            <label>パスワード</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+            <br>
+            <button type="submit">ログイン</button>
+          </form>
+          <br>
+          <br>
+          <a href="{% url 'accounts:create_account' %}">新規登録はこちら</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
