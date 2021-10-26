@@ -5,25 +5,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (LoginView,LogoutView)
 from django.utils import timezone
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .forms import UserCreateForm,LoginForm
 
 # Create your views here.
 #新規ユーザアカウント登録
 class CreateAccountView(generic.CreateView):
-    def post(self, request, *args, **kwargs):
-        form = UserCreateForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            return redirect('/login')
-        return render(request, 'accounts/create_account.html', {'form': form,})
+    form_class = UserCreateForm
+    template_name = 'accounts/create_account.html'
+    success_url = reverse_lazy('/login')
 
-    def get(self, request, *args, **kwargs):
-        form = UserCreateForm(request.POST)
-        return render(request, 'accounts/create_account.html', {'form': form,})
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        self.object = user
+        return redirect(self.get_success_url())
 
 #ログイン機能
 class AccountLoginView(LoginView):
