@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-#    'twitter.apps.TwitterConfig',
-#    'accounts.apps.AccountsConfig',
+    'twitter.apps.TwitterConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [

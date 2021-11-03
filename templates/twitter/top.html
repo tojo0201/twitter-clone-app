@@ -1,0 +1,37 @@
+{% extends 'twitter/base.html' %}
+
+{% block content %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+
+          <form action="{% url 'twitter:tweet' %}" method="POST">{% csrf_token %}
+              <button type="submit">ツイートする</button><br><br>
+
+              {% if tweet_list is null or tweet_list.count == 0 %}
+                <p>表示できるツイートはありません。</p>
+              {% else %}
+                {% for tweet in tweet_list %}
+                  <table class="tweet-table">
+                    <tr>
+                      <td><a class="tweet-user">{{tweet.user.get_username}}</a></td>
+                    </tr>
+                    <tr>
+                      <td>{{tweet.tweet_text}}</td>
+                    </tr>
+                    <tr>
+                      <td align="right"><a class="favorite">＋お気に入り</a></td>
+                    </tr>
+                  </table>
+                  <p class="tweet-time">{{tweet.created_time}}</p>
+                  <br>
+                {% endfor %}
+              {% endif %}
+          </form>
+          <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
