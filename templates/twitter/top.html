@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8">
 
-          <form action="{% url 'twitter:tweet' %}" method="POST">{% csrf_token %}
+          <form action="{% url 'twitter:tweet_input' %}" method="POST">{% csrf_token %}
               <button type="submit">ツイートする</button><br><br>
 
               {% if tweet_list is null or tweet_list.count == 0 %}

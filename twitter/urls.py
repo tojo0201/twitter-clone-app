@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'twitter'
 urlpatterns = [
-    path('top/', views.top, name='top'),
-    path('tweet/', views.tweet, name='tweet'),
-    path('tweet_input/', views.TweetInputView.as_view(), name='tweet_input'),
+    path('', views.top, name='top'),
+    path('twitter/', views.top, name='top'),
+    path('tweet-input/', views.TweetInputView.as_view(), name='tweet_input'),
 ]

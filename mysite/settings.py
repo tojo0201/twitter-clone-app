@@ -127,6 +127,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/twitter/top'
-LOGOUT_REDIRECT_URL = '/login'
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = '/twitter'
+LOGOUT_REDIRECT_URL = 'accounts:login'
