@@ -128,5 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = '/twitter'
+LOGIN_REDIRECT_URL = 'twitter:top'
 LOGOUT_REDIRECT_URL = 'accounts:login'

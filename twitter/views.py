@@ -33,5 +33,5 @@ class TweetInputView(LoginRequiredMixin, generic.CreateView):
         user_contents = self.request.user
         tweet_contents.user = user_contents
         tweet_contents.save()
-        self.object = user_contents
+        self.object = tweet_contents
         return redirect(self.get_success_url())
