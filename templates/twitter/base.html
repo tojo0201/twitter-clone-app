@@ -1,0 +1,27 @@
+{% load static %}
+<html>
+    <head>
+        <title>Twitter機能</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/twitter.css' %}">
+    </head>
+    <body>
+      <div class="page-header">
+          <h1>Twitter機能</h1>
+          <div class="header-right">
+            <div class="header-right-top">
+              <a href='{% url 'twitter:top' %}' class="list-button">マイページ</a>
+              <a class="list-button">お気に入り</a>
+              <a class="list-button">ユーザ一覧</a>
+            </div>
+            <div class="header-right-bottom">
+              <span class="user-name">ユーザ名：{{user.get_username}} </span>
+              <a href='{% url 'accounts:logout' %}' class="logout-button">ログアウト</a>
+            </div>
+          </div>
+      </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

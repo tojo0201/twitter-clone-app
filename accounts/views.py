@@ -14,7 +14,7 @@ from .forms import UserCreateForm,LoginForm
 class CreateAccountView(generic.CreateView):
     form_class = UserCreateForm
     template_name = 'accounts/create_account.html'
-    success_url = reverse_lazy('/login')
+    success_url = reverse_lazy('accounts:login')
 
     def form_valid(self, form):
         user = form.save()

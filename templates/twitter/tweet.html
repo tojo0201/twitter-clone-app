@@ -1,0 +1,22 @@
+{% extends 'twitter/base.html' %}
+
+{% block content %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+          <h2>ツイート内容</h2>
+
+          <form action="{% url 'twitter:tweet_input' %}" method="POST">{% csrf_token %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <button type="submit">ツイートする</button>
+
+          </form>
+          <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
