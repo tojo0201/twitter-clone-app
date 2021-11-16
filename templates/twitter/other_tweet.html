@@ -5,9 +5,18 @@
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
+          <h2>{{other_user.get_username}} のツイート</h2>
 
-          <form action="{% url 'twitter:tweet_input' %}" method="POST">{% csrf_token %}
-              <button type="submit">ツイートする</button><br><br>
+          <form action="" method="POST">{% csrf_token %}
+              {% if user.id == other_user.id %}
+                  <h3>自分のツイートを表示しています。</h3>
+              {% elif follow is True %}
+                  <a href="{% url 'twitter:follow_deleted' other_user.id %}" class="follow-del-button">×フォローを解除</a>
+                  <br><br>
+              {% else %}
+                  <a href="{% url 'twitter:followed' other_user.id %}" class="followed-button">✓フォローする</a>
+                  <br><br>
+              {% endif %}
 
               {% if tweet_list is null or tweet_list.count == 0 %}
                 <p>表示できるツイートはありません。</p>
