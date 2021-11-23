@@ -15,7 +15,7 @@
                 {% for tweet in tweet_list %}
                   <table class="tweet-table">
                     <tr>
-                      <td><a class="tweet-user" href="{% url 'twitter:other_user' tweet.user.id %}">{{tweet.user.get_username}}</a></td>
+                      <td><a class="tweet-user" href="{% url 'twitter:tweet_user' tweet.user.id %}">{{tweet.user.get_username}}</a></td>
                     </tr>
                     <tr>
                       <td>{{tweet.tweet_text}}</td>

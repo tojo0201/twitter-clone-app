@@ -5,16 +5,16 @@
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
-          <h2>{{other_user.get_username}} のツイート</h2>
+          <h2>{{tweet_user.get_username}} のツイート</h2>
 
           <form action="" method="POST">{% csrf_token %}
-              {% if user.id == other_user.id %}
+              {% if user.id == tweet_user.id %}
                   <h3>自分のツイートを表示しています。</h3>
-              {% elif follow is True %}
-                  <a href="{% url 'twitter:follow_deleted' other_user.id %}" class="follow-del-button">×フォローを解除</a>
+              {% elif is_follow %}
+                  <a href="{% url 'twitter:follow_deleted' tweet_user.id %}" class="follow-del-button">×フォローを解除</a>
                   <br><br>
               {% else %}
-                  <a href="{% url 'twitter:followed' other_user.id %}" class="followed-button">✓フォローする</a>
+                  <a href="{% url 'twitter:follow' tweet_user.id %}" class="followed-button">✓フォローする</a>
                   <br><br>
               {% endif %}
 
@@ -24,7 +24,7 @@
                 {% for tweet in tweet_list %}
                   <table class="tweet-table">
                     <tr>
-                      <td><a class="tweet-user" href="{% url 'twitter:other_user' tweet.user.id %}">{{tweet.user.get_username}}</a></td>
+                      <td><a class="tweet-user" href="{% url 'twitter:tweet_user' tweet.user.id %}">{{tweet.user.get_username}}</a></td>
                     </tr>
                     <tr>
                       <td>{{tweet.tweet_text}}</td>

@@ -8,7 +8,7 @@
           {% if all_user_list %}
               <ul style="font-size: 16pt;"">
               {% for user in all_user_list %}
-                <li><a href="{% url 'twitter:other_user' user.id %}">{{user.get_username}}</a></li>
+                <li><a href="{% url 'twitter:tweet_user' user.id %}">{{user.get_username}}</a></li>
               {% endfor %}
               </ul>
           {% else %}

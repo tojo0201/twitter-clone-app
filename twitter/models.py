@@ -17,8 +17,8 @@ class Tweet(models.Model):
 
 class Follow(models.Model):
     #ユーザ情報
-    user =  models.ForeignKey(User, related_name='used_user', on_delete=models.CASCADE)
-    followed_user = models.IntegerField()
+    follower = models.ForeignKey(User, on_delete=models.CASCADE)
+    followee = models.IntegerField()
     created_time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
