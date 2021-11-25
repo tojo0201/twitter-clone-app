@@ -24,7 +24,7 @@ def top(request):
 def tweet_user(request, tweet_user_id):
     tweet_user = get_object_or_404(User, id=tweet_user_id)
     tweet_list = Tweet.objects.filter(user=tweet_user).order_by('created_time').reverse()[:20]
-    is_follow = Follow.objects.filter(follower=request.user, followee=tweet_user_id).exists()
+    is_follow = Follow.objects.filter(follower=request.user, followee=tweet_user).exists()
     return render(request, 'twitter/tweet_list.html', {'tweet_user': tweet_user, 'tweet_list': tweet_list, 'is_follow': is_follow})
 
 #フォロー機能
@@ -32,7 +32,7 @@ def user_follow(request, tweet_user_id):
     tweet_user = get_object_or_404(User, id=tweet_user_id)
     follow, created = Follow.objects.get_or_create(
         follower=request.user,
-        followee=tweet_user_id
+        followee=tweet_user
         )
     if created:
         follow.save()
@@ -41,7 +41,7 @@ def user_follow(request, tweet_user_id):
 #フォロー削除機能
 def follow_deleted(request, tweet_user_id):
     tweet_user = get_object_or_404(User, id=tweet_user_id)
-    follow = Follow.objects.filter(follower=request.user, followee=tweet_user_id)
+    follow = Follow.objects.filter(follower=request.user, followee=tweet_user)
     follow.delete()
     return redirect(request.META.get('HTTP_REFERER'))
 
