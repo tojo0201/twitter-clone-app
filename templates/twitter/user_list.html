@@ -1,0 +1,22 @@
+{% extends 'twitter/base.html' %}
+
+{% block content %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+          {% if all_user_list %}
+              <ul style="font-size: 16pt;"">
+              {% for user in all_user_list %}
+                <li><a href="{% url 'twitter:tweet_user' user.id %}">{{user.get_username}}</a></li>
+              {% endfor %}
+              </ul>
+          {% else %}
+            <p>他ユーザはいません</p>
+          {% endif %}
+          <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
