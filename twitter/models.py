@@ -23,3 +23,13 @@ class Follow(models.Model):
 
     def __str__(self):
         return self.user
+
+class FavoriteTweet(models.Model):
+    #お気に入りにしているユーザ情報
+    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    #お気に入りのツイート情報
+    tweet = models.ForeignKey(Tweet, on_delete=models.CASCADE)
+    created_time = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.user

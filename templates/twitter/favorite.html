@@ -5,12 +5,11 @@
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
+          <h2>お気に入りのツイート</h2>
 
-          <form action="{% url 'twitter:tweet_input' %}" method="POST">{% csrf_token %}
-              <button type="submit">ツイートする</button><br><br>
-
+          <form action="" method="POST">{% csrf_token %}
               {% if tweet_list is null or tweet_list.count == 0 %}
-                <p>表示できるツイートはありません。</p>
+                <p>お気に入りのツイートはありません。</p>
               {% else %}
                 {% for tweet in tweet_list %}
                   <table class="tweet-table">
@@ -21,7 +20,7 @@
                       <td>{{tweet.tweet_text}}</td>
                     </tr>
                     <tr>
-                      <td align="right"><a class="favorite" href="{% url 'twitter:add_favorite' tweet.id %}">＋お気に入り</a></td>
+                      <td align="right"><a class="favorite" href="{% url 'twitter:del_favorite' tweet.id %}">－お気に入り削除</a></td>
                     </tr>
                   </table>
                   <p class="tweet-time">{{tweet.created_time}}</p>
