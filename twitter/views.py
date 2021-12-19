@@ -19,15 +19,17 @@ from itertools import chain
 def top(request):
     follow_list = Follow.objects.filter(follower=request.user).values_list('followee', flat=True)
     tweet_list = Tweet.objects.filter(Q(user=request.user) | Q(user__in=follow_list)).order_by('created_time').reverse()[:20]
-    return render(request, 'twitter/top.html', {'tweet_list': tweet_list})
+    favorite_tweet_id = FavoriteTweet.objects.filter(user=request.user).values_list('tweet_id', flat=True)
+    return render(request, 'twitter/top.html', {'tweet_list': tweet_list, 'favorite_tweet_id': favorite_tweet_id})
 
 #他の人のツイート（自分含む）
 @login_required
 def tweet_user(request, tweet_user_id):
     tweet_user = get_object_or_404(User, id=tweet_user_id)
     tweet_list = Tweet.objects.filter(user=tweet_user).order_by('created_time').reverse()[:20]
+    favorite_tweet_id = FavoriteTweet.objects.filter(user=request.user).values_list('tweet_id', flat=True)
     is_follow = Follow.objects.filter(follower=request.user, followee=tweet_user).exists()
-    return render(request, 'twitter/tweet_list.html', {'tweet_user': tweet_user, 'tweet_list': tweet_list, 'is_follow': is_follow})
+    return render(request, 'twitter/tweet_list.html', {'tweet_user': tweet_user, 'tweet_list': tweet_list, 'favorite_tweet_id': favorite_tweet_id, 'is_follow': is_follow})
 
 #フォロー機能
 @login_required
