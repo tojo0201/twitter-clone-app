@@ -21,7 +21,7 @@
                       <td>{{tweet.tweet_text}}</td>
                     </tr>
                     <tr>
-                      {% if tweet.id in favorite_tweet_id %}
+                      {% if tweet.id in favorite_tweet_list %}
                         <td align="right"><a class="favorite" href="{% url 'twitter:del_favorite' tweet.id %}">－お気に入り</a></td>
                       {% else %}
                         <td align="right"><a class="favorite" href="{% url 'twitter:add_favorite' tweet.id %}">＋お気に入り</a></td>
